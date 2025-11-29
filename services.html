@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши услуги - Kairox Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a0a1a;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+        }
+
+        .section-box {
+            border: 2px dashed rgba(139, 92, 246, 0.5);
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin: 40px 0;
+            background: rgba(10, 10, 26, 0.5);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .section-icon {
+            font-size: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #a78bfa;
+        }
+
+        /* Карточка услуги */
+        .service-card {
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            color: #a78bfa;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .service-description {
+            color: #b0b0d0;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .service-features {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #b0b0d0;
+            font-size: 0.85rem;
+        }
+
+        .feature-item::before {
+            content: '→';
+            color: #a78bfa;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .service-price {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            border: none;
+            border-radius: 50px;
+            padding: 16px 40px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(139, 92, 246, 0.6);
+        }
+
+        .back-home {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #a78bfa;
+            border: 2px dashed rgba(139, 92, 246, 0.5);
+            border-radius: 20px;
+            margin-top: 40px;
+            background: rgba(10, 10, 26, 0.5);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .service-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <div class="section-box">
+            <div class="section-header">
+                <span class="section-icon">💼</span>
+                <h2 class="section-title">Наши Услуги</h2>
+            </div>
+
+            <!-- Упаковка соцсетей -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">📦</div>
+                    <h3 class="service-title">Упаковка соцсетей</h3>
+                </div>
+                <p class="service-description">
+                    Создадим уникальный визуальный стиль для ваших социальных сетей, который выделит вас среди конкурентов 
+                    и привлечёт целевую аудиторию. От концепции до реализации.
+                </p>
+                <div class="service-features">
+                    <div class="feature-item">Разработка фирменного стиля</div>
+                    <div class="feature-item">Дизайн шаблонов для постов</div>
+                    <div class="feature-item">Оформление профиля и обложек</div>
+                    <div class="feature-item">Создание highlights для Stories</div>
+                </div>
+                <span class="service-price">Бесплатно(временно)</span>
+            </div>
+
+            <!-- Услуги дизайнера -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🎨</div>
+                    <h3 class="service-title">Услуги дизайнера</h3>
+                </div>
+                <p class="service-description">
+                    Создаём визуальные решения любой сложности: от логотипов до полноценного брендбука. 
+                    Дизайн, который работает на ваш бизнес.
+                </p>
+                <div class="service-features">
+                    <div class="feature-item">Разработка логотипов и фирменного стиля</div>
+                    <div class="feature-item">Дизайн рекламных материалов</div>
+                    <div class="feature-item">Баннеры и обложки для соцсетей</div>
+                    <div class="feature-item">Презентации и инфографика</div>
+                    <div class="feature-item">карточки товаров</div>
+                </div>
+                <span class="service-price">Бесплатно(временно)</span>
+            </div>
+
+            <!-- Нейро-фотосессия -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🤖</div>
+                    <h3 class="service-title">Решение ваших задач</h3>
+                </div>
+                <p class="service-description">
+                    Решим задачу для вашего проекта/соц сети
+                </p>
+                <span class="service-price">Бесплатно(временно)</span>
+            </div>
+
+            <div class="back-home">
+                <a href="index.html" class="home-btn">
+                    <span>←</span>
+                    <span>На главную</span>
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>©2025 Kairox Studio</p>
+        </footer>
+    </div>
+
+    <script>
+        const starsContainer = document.getElementById('stars');
+        const starCount = 200;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = Math.random() * 2 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>

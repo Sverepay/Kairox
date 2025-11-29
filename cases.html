@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кейсы - Kairox Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a0a1a;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+        }
+
+        .section-box {
+            border: 2px dashed rgba(139, 92, 246, 0.5);
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin: 40px 0;
+            background: rgba(10, 10, 26, 0.5);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .section-icon {
+            font-size: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #a78bfa;
+        }
+
+        .case-item {
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 15px;
+            padding: 0;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .case-item:hover {
+            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Изображение кейса */
+        .case-image {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(167, 139, 250, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .case-image-placeholder {
+            font-size: 4rem;
+            opacity: 0.5;
+        }
+
+        /* Контент кейса */
+        .case-content {
+            padding: 25px;
+        }
+
+        .case-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .case-icon {
+            font-size: 2rem;
+        }
+
+        .case-title {
+            font-size: 1.2rem;
+            color: #a78bfa;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .case-description {
+            color: #b0b0d0;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .case-results {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .result-box {
+            background: rgba(139, 92, 246, 0.15);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .result-number {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #a78bfa;
+            margin-bottom: 3px;
+        }
+
+        .result-label {
+            font-size: 0.75rem;
+            color: #b0b0d0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            border: none;
+            border-radius: 50px;
+            padding: 16px 40px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(139, 92, 246, 0.6);
+        }
+
+        .back-home {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        /* Баннер услуг */
+        .services-banner {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(167, 139, 250, 0.1) 100%);
+            border: 2px dashed rgba(139, 92, 246, 0.4);
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            opacity: 0.2;
+            animation: morphBlob 10s ease-in-out infinite;
+        }
+
+        @keyframes pulse-banner {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .services-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .services-banner .highlight {
+            color: #a78bfa;
+            font-size: 2.5rem;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .services-btn {
+            text-decoration: none;
+            color: #963aff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #a78bfa;
+            border: 2px dashed rgba(139, 92, 246, 0.5);
+            border-radius: 20px;
+            margin-top: 40px;
+            background: rgba(10, 10, 26, 0.5);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .case-results {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <div class="section-box">
+            <div class="section-header">
+                <span class="section-icon">📊</span>
+                <h2 class="section-title">Кейсы</h2>
+            </div>
+
+            <!-- Кейс 1: Онлайн-школа -->
+            <div class="case-item">
+                <div class="case-image">
+                    <img src="img/inst.PNG" alt="Запуск онлайн-школы">
+                </div>
+                <div class="case-content">
+                    <div class="case-header">
+                        <span class="case-icon">🚀</span>
+                        <h3 class="case-title">Сделали профиль для кафе</h3>
+                    </div>
+                    <p class="case-description">
+                        Помогли кафе выйти на рынок: сделали дизайн для инстаграм и вели социальные сети. Теперь профиль выглядит стильно и оригинально!
+                    </p>
+                    <div class="case-results">
+                        <div class="result-box">
+                            <div class="result-number">+100%</div>
+                            <div class="result-label">Привлекательность</div>
+                        </div>
+                        <div class="result-box">
+                            <div class="result-number">+30%</div>
+                            <div class="result-label">Доверие</div>
+                        </div>
+                        <div class="result-box">
+                            <div class="result-number">5★</div>
+                            <div class="result-label">Рейтинг</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Кейс 2: Ребрендинг магазина -->
+            <div class="case-item">
+                <div class="case-image">
+                    <img src="img/kart.png" alt="Ребрендинг магазина">
+                </div>
+                <div class="case-content">
+                    <div class="case-header">
+                        <span class="case-icon">🛍️</span>
+                        <h3 class="case-title">Сделали карточки товаров</h3>
+                    </div>
+                    <p class="case-description">
+                        Полностью сделали уникальный дизайн для карточки товара: новый стиль, 
+                        фирменные цвета. Продажи выросли на 180%.
+                    </p>
+                    <div class="case-results">
+                        <div class="result-box">
+                            <div class="result-number">+180%</div>
+                            <div class="result-label">Рост продаж</div>
+                        </div>
+                        <div class="result-box">
+                            <div class="result-number">2.5x</div>
+                            <div class="result-label">Узнаваемость</div>
+                        </div>
+                        <div class="result-box">
+                            <div class="result-number">+60%</div>
+                            <div class="result-label">Доверие</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="services-banner">
+                <h2 class="highlight">Soon more...</h2>
+            </div>
+
+            <div class="back-home">
+                <a href="index.html" class="home-btn">
+                    <span>←</span>
+                    <span>На главную</span>
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>©2025 Kairox Studio</p>
+        </footer>
+    </div>
+
+    <script>
+        const starsContainer = document.getElementById('stars');
+        const starCount = 200;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = Math.random() * 2 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
